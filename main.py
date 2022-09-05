@@ -28,14 +28,17 @@ while should_continue:
         food.new_start()
         snake.extend()
         scoreboard.increase_score()
+
     # find out the collision with wall
     if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
-        should_continue = False
-        scoreboard.game_over()
+        scoreboard.restart_score()
+        snake.reset()
     # find out the collision with tail
-    for position in snake.start_snake[1:]:
-        if snake.head.distance(position) < 10:
-            should_continue = False
-            scoreboard.game_over()
+    for position in snake.start_snake:
+        if position == snake.head:
+            pass
+        elif snake.head.distance(position) < 10:
+            scoreboard.restart_score()
+            snake.reset()
 
 screen.exitonclick()

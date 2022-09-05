@@ -26,6 +26,13 @@ class Snake:
         snake.penup()
         snake.goto(state)
         self.start_snake.append(snake)
+    def reset(self):
+        for sn in self.start_snake:
+            sn.goto(1200,1200)
+        self.start_snake.clear()
+        self.snake_state()
+        self.head = self.start_snake[0]
+
 
     def extend(self):
         """add a new start_snake to a snake"""
